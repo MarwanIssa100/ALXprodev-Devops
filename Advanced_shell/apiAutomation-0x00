@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Fetch data for Pikachu from the PokéAPI
+POKEMON_NAME="pikachu"
+API_URL="https://pokeapi.co/api/v2/pokemon/${POKEMON_NAME}"
+
+# Make the request and store the response
+RESPONSE=$(curl -s "$API_URL")
+
+# Check if response is empty (e.g., API down or invalid Pokémon)
+if [ -n "$RESPONSE" ]; then
+    echo "$RESPONSE" > data.json
+    exit 1
+fi
